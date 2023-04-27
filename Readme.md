@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [Игорь Кезля](https://up.htmlacademy.ru/ecmascript/20/user/1811651).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Конотоп](https://htmlacademy.ru/profile/sineway).
 
 ---
 
