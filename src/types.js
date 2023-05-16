@@ -20,6 +20,12 @@
  * @prop {string} cost
  *
  */
+
+/**
+ * @typedef AddViewState
+ * @prop {boolean} isDisabled
+ */
+
 /**
  * @typedef ListViewState
  * @prop {Array<PointViewState>} items
