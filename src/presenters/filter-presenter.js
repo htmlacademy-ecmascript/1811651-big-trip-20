@@ -6,9 +6,21 @@ import Presenter from './presenter.js';
 class FilterPresenter extends Presenter {
   /**
    * @override
+   * @return {FilterViewState}
    */
   createViewState() {
-    // TODO: FilterViewState
+    /**
+     * @type {Array<FilterType>}
+     */
+    const types = ['everything', 'future', 'past', 'present'];
+
+    const items = types.map((it) => ({
+      value: it,
+      isSelected: it === 'future',
+      isDisabled: false
+    }));
+
+    return {items};
   }
 }
 

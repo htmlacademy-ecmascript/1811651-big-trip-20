@@ -12,6 +12,53 @@
  * @typedef {import('./views/view.js').default} View
  */
 
+
+/**
+ * @typedef BriefViewState
+ * @prop {string} places
+ * @prop {string} dates
+ * @prop {string} cost
+ *
+ */
+
+/**
+ * @typedef AddViewState
+ * @prop {boolean} isDisabled
+ */
+
+/**
+ * @typedef FilterViewState
+ * @prop {Array<FilterItemViewState>} items
+ */
+
+/**
+ * @typedef FilterItemViewState
+ * @prop {FilterType} value
+ * @prop {boolean} isDisabled
+ * @prop {boolean} isSelected
+ */
+
+
+/**
+ * @typedef {'everything' | 'future' | 'present' | 'past'} FilterType
+ */
+
+/**
+ * @typedef SortViewState
+ * @prop {Array<SortItemViewState>} items
+ */
+
+/**
+ * @typedef SortItemViewState
+ * @prop {SortType} value
+ * @prop {boolean} isDisabled
+ * @prop {boolean} isSelected
+ */
+
+/**
+ * @typedef {'day' | 'event' | 'time' | 'price' | 'offers'} SortType
+ */
+
 /**
  * @typedef ListViewState
  * @prop {Array<PointViewState>} items
@@ -99,3 +146,4 @@
 /**
  * @typedef {'taxi' | 'bus' | 'train' | 'ship' | 'drive' | 'flight' | 'check-in' | 'sightseeing' | 'restaurant'} PointType
  */
+
