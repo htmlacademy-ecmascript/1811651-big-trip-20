@@ -5,6 +5,7 @@ import {html} from '../utils.js';
 
 /**
  * @extends {View<PointViewState>}
+* @implements {EventListenerObject}
  */
 class EditorView extends View {
 
@@ -13,6 +14,15 @@ class EditorView extends View {
 
     this.addEventListener('click', this.handleClick);
   }
+
+  connectedCallback() {
+    document.addEventListener('keydown', this);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('keydown', this);
+  }
+
   /**
    * @param {MouseEvent & {target: Element}} event
    */
@@ -21,6 +31,17 @@ class EditorView extends View {
       this.notify('close');
     }
   }
+
+  /**
+   *
+   * @param {KeyboardEvent} event
+   */
+  handleEvent(event) {
+    if (event.key === 'Escape') {
+      this.notify('close');
+    }
+  }
+
   /**
    * @override
    */
