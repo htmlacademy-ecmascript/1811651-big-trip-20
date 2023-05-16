@@ -44,6 +44,22 @@
  */
 
 /**
+ * @typedef SortViewState
+ * @prop {Array<SortItemViewState>} items
+ */
+
+/**
+ * @typedef SortItemViewState
+ * @prop {SortType} value
+ * @prop {boolean} isDisabled
+ * @prop {boolean} isSelected
+ */
+
+/**
+ * @typedef {'day' | 'event' | 'time' | 'price' | 'offers'} SortType
+ */
+
+/**
  * @typedef ListViewState
  * @prop {Array<PointViewState>} items
  */
@@ -125,3 +141,4 @@
 /**
  * @typedef {'taxi' | 'bus' | 'train' | 'ship' | 'drive' | 'flight' | 'check-in' | 'sightseeing' | 'restaurant'} PointType
  */
+
