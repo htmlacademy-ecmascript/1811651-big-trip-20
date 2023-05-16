@@ -12,6 +12,14 @@
  * @typedef {import('./views/view.js').default} View
  */
 
+
+/**
+ * @typedef BriefViewState
+ * @prop {string} places
+ * @prop {string} dates
+ * @prop {string} cost
+ *
+ */
 /**
  * @typedef ListViewState
  * @prop {Array<PointViewState>} items
