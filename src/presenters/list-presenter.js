@@ -26,7 +26,7 @@ class ListPresenter extends Presenter {
       isSelected: it.type === point.type
     }));
 
-    const destinations = this.model.getDestionations().map((it) => ({
+    const destinations = this.model.getDestinations().map((it) => ({
       ...it,
       isSelected: it.id === point.destinationId
     }));
