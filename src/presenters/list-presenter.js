@@ -26,7 +26,7 @@ class ListPresenter extends Presenter {
       isSelected: it.type === point.type
     }));
 
-    const destinations = this.model.getDestionations().map((it) => ({
+    const destinations = this.model.getDestinations().map((it) => ({
       ...it,
       isSelected: it.id === point.destinationId
     }));
@@ -85,8 +85,20 @@ class ListPresenter extends Presenter {
       this.setUrlParams(urlParams);
     };
 
+    /**
+     * @param {CustomEvent & {target: CardView}} event
+     */
+    const handleViewFavorite = (event) => {
+      const card = event.target;
+      const point = card.state;
+
+      point.isFavorite = !point.isFavorite;
+      card.render();
+    };
+
     this.view.addEventListener('open', handleViewOpen);
     this.view.addEventListener('close', handleViewClose);
+    this.view.addEventListener('favorite', handleViewFavorite);
   }
 }
 
