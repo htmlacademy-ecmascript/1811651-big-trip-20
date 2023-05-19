@@ -30,7 +30,7 @@ class ListPresenter extends Presenter {
       isSelected: it.type === point.type
     }));
 
-    const destinations = this.model.getDestionations().map((it) => ({
+    const destinations = this.model.getDestinations().map((it) => ({
       ...it,
       isSelected: it.id === point.destinationId
     }));
@@ -42,8 +42,8 @@ class ListPresenter extends Presenter {
     }));
 
     /**
-       * @type {UrlParams}
-       */
+     * @type {UrlParams}
+     */
     const urlParams = this.getUrlParams();
 
     return {
