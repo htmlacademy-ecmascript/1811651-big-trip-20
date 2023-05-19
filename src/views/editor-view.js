@@ -188,7 +188,7 @@ class EditorView extends View {
     const point = this.state;
 
     return html`
-      <section class="event__section  event__section--offers" ${point.offers.length ? '' : 'hidden'}
+      <section class="event__section  event__section--offers" ${point.offers.length ? '' : 'hidden'}>
         <h3 class="event__section-title  event__section-title--offers">Offers</h3>
         <div class="event__available-offers">
           ${point.offers.map((it) => html`
