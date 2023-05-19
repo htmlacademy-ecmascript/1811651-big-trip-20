@@ -1,6 +1,6 @@
 import Model from './model.js';
 import points from '../data/points.json';
-import destionations from '../data/destionations.json';
+import destinations from '../data/destinations.json';
 import offerGroups from '../data/offers.json';
 
 class AppModel extends Model {
@@ -32,8 +32,8 @@ class AppModel extends Model {
   /**
    * @return {Array<Destination>}
    */
-  getDestionations() {
-    return structuredClone(this.#destionations);
+  getDestinations() {
+    return structuredClone(this.#destinations);
   }
 
   /**
