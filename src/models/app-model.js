@@ -31,6 +31,14 @@ class AppModel extends Model {
   }
 
   /**
+   * @param {Point} point
+   * @return {number}
+   */
+  static calcPointDuration(point) {
+    return Date.parse(point.endDateTime) - Date.parse(point.startDateTime);
+  }
+
+  /**
    * @param {PointInSnakeCase} point
    * @return {Point}
    */
