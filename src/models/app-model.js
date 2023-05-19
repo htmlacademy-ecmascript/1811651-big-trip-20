@@ -4,18 +4,9 @@ import destionations from '../data/destionations.json';
 import offerGroups from '../data/offers.json';
 
 class AppModel extends Model {
-  #points;
-  #destionations;
-  #offerGroups;
-
-  constructor () {
-    super();
-
-    this.#points = points;
-    this.#destionations = destionations;
-    this.#offerGroups = offerGroups;
-  }
-
+  #points = points;
+  #destinations = destinations;
+  #offerGroups = offerGroups;
 
   /**
    * @return {Array<Point>}
