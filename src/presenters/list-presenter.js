@@ -67,10 +67,16 @@ class ListPresenter extends Presenter {
    * @override
    */
   addEventListeners() {
+
+    this.view.addEventListener('open', this.handleViewOpen.bind(this));
+    this.view.addEventListener('close', this.handleViewClose.bind(this));
+    this.view.addEventListener('favorite', this.handleViewFavorite.bind(this));
+  }
+
     /**
      * @param {CustomEvent & {target: CardView}} event
      */
-    const handleViewOpen = (event) => {
+  handleViewOpen(event) {
       /**
        * @type {UrlParams}
        */
@@ -78,27 +84,28 @@ class ListPresenter extends Presenter {
 
       urlParams.edit = event.target.state.id;
       this.setUrlParams(urlParams);
-    };
+  }
 
-    const handleViewClose = () => {
+  handleViewClose() {
       /**
        * @type {UrlParams}
        */
       const urlParams = this.getUrlParams();
       delete urlParams.edit;
       this.setUrlParams(urlParams);
-    };
+  }
 
     /**
      * @param {CustomEvent & {target: CardView}} event
      */
-    const handleViewFavorite = (event) => {
+  handleViewFavorite(event) {
       const card = event.target;
       const point = card.state;
 
       point.isFavorite = !point.isFavorite;
       card.render();
-    };
+  }
+
 
     this.view.addEventListener('open', handleViewOpen);
     this.view.addEventListener('close', handleViewClose);
