@@ -74,37 +74,37 @@ class ListPresenter extends Presenter {
     this.view.addEventListener('edit', this.handleViewEdit.bind(this));
   }
 
-    /**
-     * @param {CustomEvent & {target: CardView}} event
-     */
+  /**
+   * @param {CustomEvent & {target: CardView}} event
+   */
   handleViewOpen(event) {
-      /**
-       * @type {UrlParams}
-       */
-      const urlParams = this.getUrlParams();
+    /**
+     * @type {UrlParams}
+     */
+    const urlParams = this.getUrlParams();
 
-      urlParams.edit = event.target.state.id;
-      this.setUrlParams(urlParams);
+    urlParams.edit = event.target.state.id;
+    this.setUrlParams(urlParams);
   }
 
   handleViewClose() {
-      /**
-       * @type {UrlParams}
-       */
-      const urlParams = this.getUrlParams();
-      delete urlParams.edit;
-      this.setUrlParams(urlParams);
+    /**
+     * @type {UrlParams}
+     */
+    const urlParams = this.getUrlParams();
+    delete urlParams.edit;
+    this.setUrlParams(urlParams);
   }
 
-    /**
-     * @param {CustomEvent & {target: CardView}} event
-     */
+  /**
+   * @param {CustomEvent & {target: CardView}} event
+   */
   handleViewFavorite(event) {
-      const card = event.target;
-      const point = card.state;
+    const card = event.target;
+    const point = card.state;
 
-      point.isFavorite = !point.isFavorite;
-      card.render();
+    point.isFavorite = !point.isFavorite;
+    card.render();
   }
 
   /**
