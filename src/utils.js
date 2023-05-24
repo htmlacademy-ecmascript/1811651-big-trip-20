@@ -44,6 +44,15 @@ function formatDuration(startDateTime, endDateTime) {
   return duration.format('mm[m]');
 }
 
+/**
+ * @param {HTMLInputElement} startDateField
+ * @param {HTMLInputElement} endDateField
+ */
+function createDatePickers(startDateField, endDateField) {
+  flatpickr(startDateField);
+  flatpickr(endDateField);
+}
+
 class SafeHtml extends String {}
 
 /**
@@ -73,4 +82,4 @@ function html(strings, ...values) {
   return new SafeHtml(result);
 }
 
-export {formatDate, formatTime, formatDuration, SafeHtml, html};
+export {formatDate, formatTime, formatDuration, createDatePickers, SafeHtml, html};
