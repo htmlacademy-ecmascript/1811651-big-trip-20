@@ -221,7 +221,7 @@ class EditorView extends View {
     const destination = point.destinations.find((it) => it.isSelected);
 
     return html`
-      <section class="event__section  event__section--destination">
+      <section ${destination ? '' : 'hidden'} class="event__section  event__section--destination">
         <h3 class="event__section-title  event__section-title--destination">Destination</h3>
         <p class="event__destination-description">${destination?.description}</p>
 
