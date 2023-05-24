@@ -5,7 +5,7 @@ import {html} from '../utils.js';
 
 /**
  * @extends {View<PointViewState>}
-* @implements {EventListenerObject}
+ * @implements {EventListenerObject}
  */
 class EditorView extends View {
 
