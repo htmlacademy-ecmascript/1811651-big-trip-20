@@ -116,7 +116,7 @@ class EditorView extends View {
         <label class="event__label  event__type-output" for="event-destination-1">
           ${type.value}
         </label>
-        <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${destination.name}" list="destination-list-1">
+        <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${destination?.name}" list="destination-list-1">
         <datalist id="destination-list-1">
           ${point.destinations.map((it) => html`
             <option value="${it.name}"></option>
@@ -223,11 +223,11 @@ class EditorView extends View {
     return html`
       <section class="event__section  event__section--destination">
         <h3 class="event__section-title  event__section-title--destination">Destination</h3>
-        <p class="event__destination-description">${destination.description}</p>
+        <p class="event__destination-description">${destination?.description}</p>
 
         <div class="event__photos-container">
           <div class="event__photos-tape">
-            ${destination.pictures.map((it) => html`
+            ${destination?.pictures.map((it) => html`
               <img class="event__photo" src="${it.src}" alt="${it.description}">
             `)}
           </div>
