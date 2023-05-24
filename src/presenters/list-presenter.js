@@ -116,10 +116,18 @@ class ListPresenter extends Presenter {
     const field = event.detail;
     const point = editor.state;
 
+    switch (field.name) {
 
-    this.view.addEventListener('open', handleViewOpen);
-    this.view.addEventListener('close', handleViewClose);
-    this.view.addEventListener('favorite', handleViewFavorite);
+      case 'event-destination': {
+        const name = field.value.trim();
+
+        point.destinations.forEach((it) => {
+          it.isSelected = it.name === name;
+        });
+        editor.renderDestination();
+        break;
+      }
+    }
   }
 }
 
