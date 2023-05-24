@@ -8,6 +8,10 @@ import {createDatePickers, html} from '../utils.js';
  * @implements {EventListenerObject}
  */
 class EditorView extends View {
+  /**
+   * @type {ReturnType<createDatePickers>}
+   */
+  #destroyDatePickers;
 
   constructor() {
     super();
@@ -23,11 +27,12 @@ class EditorView extends View {
     const dateFields = document.querySelectorAll('.event__input--time');
     const [startDateField, endDateField] = dateFields;
 
-    createDatePickers(startDateField, endDateField);
+    this.#destroyDatePickers = createDatePickers(startDateField, endDateField);
     document.addEventListener('keydown', this);
   }
 
   disconnectedCallback() {
+    this.#destroyDatePickers();
     document.removeEventListener('keydown', this);
   }
 

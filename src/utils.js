@@ -47,10 +47,16 @@ function formatDuration(startDateTime, endDateTime) {
 /**
  * @param {HTMLInputElement} startDateField
  * @param {HTMLInputElement} endDateField
+ * @return{() => void}
  */
 function createDatePickers(startDateField, endDateField) {
-  flatpickr(startDateField);
-  flatpickr(endDateField);
+  const startDatePicker = flatpickr(startDateField);
+  const endDatePicker = flatpickr(endDateField);
+
+  return () => {
+    startDatePicker.destroy();
+    endDatePicker.destroy();
+  };
 }
 
 class SafeHtml extends String {}
