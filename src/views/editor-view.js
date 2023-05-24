@@ -1,6 +1,6 @@
 import './editor-view.css';
 import View from './view.js';
-import {html} from '../utils.js';
+import {createDatePickers, html} from '../utils.js';
 
 
 /**
@@ -17,6 +17,13 @@ class EditorView extends View {
   }
 
   connectedCallback() {
+    /**
+     * @type {NodeListOf<HTMLInputElement>}
+     */
+    const dateFields = document.querySelectorAll('.event__input--time');
+    const [startDateField, endDateField] = dateFields;
+
+    createDatePickers(startDateField, endDateField);
     document.addEventListener('keydown', this);
   }
 
