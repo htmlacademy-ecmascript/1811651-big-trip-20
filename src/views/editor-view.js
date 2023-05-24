@@ -235,6 +235,11 @@ class EditorView extends View {
       </section>
     `;
   }
+  renderDestination() {
+    this.render('.event__section--destination', this.createDestinationHtml());
+  }
+
+
 }
 
 customElements.define('editor-view', EditorView);
