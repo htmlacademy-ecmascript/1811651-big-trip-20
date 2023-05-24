@@ -112,6 +112,10 @@ class ListPresenter extends Presenter {
    * @param {CustomEvent<HTMLInputElement> & {target: EditorView}} event
    */
   handleViewEdit(event) {
+    const editor = event.target;
+    const field = event.detail;
+    const point = editor.state;
+
 
     this.view.addEventListener('open', handleViewOpen);
     this.view.addEventListener('close', handleViewClose);
