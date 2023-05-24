@@ -71,6 +71,7 @@ class ListPresenter extends Presenter {
     this.view.addEventListener('open', this.handleViewOpen.bind(this));
     this.view.addEventListener('close', this.handleViewClose.bind(this));
     this.view.addEventListener('favorite', this.handleViewFavorite.bind(this));
+    this.view.addEventListener('edit', this.handleViewEdit.bind(this));
   }
 
     /**
@@ -106,6 +107,11 @@ class ListPresenter extends Presenter {
       card.render();
   }
 
+  /**
+   *
+   * @param {CustomEvent<HTMLInputElement> & {target: EditorView}} event
+   */
+  handleViewEdit(event) {
 
     this.view.addEventListener('open', handleViewOpen);
     this.view.addEventListener('close', handleViewClose);
