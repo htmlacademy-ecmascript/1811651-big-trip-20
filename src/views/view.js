@@ -20,7 +20,7 @@ class View extends HTMLElement {
     if (arguments.length === 2) {
       this.querySelector(selector).outerHTML = String(outerHtml);
     } else {
-    this.innerHTML = String(this.createHtml());
+      this.innerHTML = String(this.createHtml());
     }
   }
 
