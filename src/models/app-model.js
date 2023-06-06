@@ -45,6 +45,7 @@ class AppModel extends Model {
    * @param {Point} point
    */
   updatePoint(point) {
+    const adaptedPoint = AppModel.adaptPointForServer(point);
   }
 
   /**
@@ -87,6 +88,24 @@ class AppModel extends Model {
       isFavorite: point.is_favorite
     };
   }
+
+  /**
+   * @param {Point} point
+   * @return {PointInSnakeCase}
+   */
+  static adaptPointForServer(point) {
+    return {
+      'id': point.id,
+      'type': point.type,
+      'destination': point.destinationId,
+      'date_from': point.startDateTime,
+      'date_to': point.endDateTime,
+      'base_price': point.basePrice,
+      'offers': point.offerIds,
+      'is_favorite': point.isFavorite
+    };
+  }
+
 }
 
 export default AppModel;
