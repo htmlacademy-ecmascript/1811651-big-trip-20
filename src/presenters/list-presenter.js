@@ -157,6 +157,23 @@ class ListPresenter extends Presenter {
         editor.renderDestination();
         break;
       }
+      case 'event-start-time': {
+        point.startDateTime = field.value;
+        break;
+      }
+      case 'event-end-time': {
+        point.endDateTime = field.value;
+        break;
+      }
+      case 'event-price': {
+        point.basePrice = Number(field.value);
+        break;
+      }
+      case 'event-offer': {
+        const offer = point.offers.find((it) => it.id === field.value);
+        offer.isSelected = !offer.isSelected;
+        break;
+      }
     }
   }
 
