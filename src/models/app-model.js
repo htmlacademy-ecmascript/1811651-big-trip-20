@@ -23,7 +23,7 @@ class AppModel extends Model {
   };
 
   /**
-   * @param {{sort?: SortType}} [criteria]
+   * @param {{filter?: FilterType, sort?: SortType}} [criteria]
    * @return {Array<Point>}
    */
   getPoints(criteria = {}) {
