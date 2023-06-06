@@ -31,7 +31,8 @@ class AppModel extends Model {
     const filterCallback = this.#filterCallbackMap[criteria.filter] ?? this.#filterCallbackMap.everything;
     const sortCallback = this.#sortCallbackMap[criteria.sort] ?? this.#sortCallbackMap.day;
 
-    return adaptedPoints.sort(sortCallback);
+    return adaptedPoints.filter(filterCallback).sort(sortCallback);
+  }
   }
 
   /**
