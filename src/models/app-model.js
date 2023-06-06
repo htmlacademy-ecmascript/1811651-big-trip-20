@@ -11,6 +11,12 @@ class AppModel extends Model {
    * @type {Record<FilterType, (it: Point) => boolean>}
    */
   #filterCallbackMap = {
+    everything: () => true,
+    future: (it) => Date.parse(it.startDateTime) > Date.now(),
+    present: (it) => !this.#filterCallbackMap.past(it) && !this.#filterCallbackMap.future(it),
+    past: (it) => Date.parse(it.endDateTime) < Date.now()
+  };
+
   /**
    * @type {Record<SortType, (a: Point, b: Point) => number>}
    */
