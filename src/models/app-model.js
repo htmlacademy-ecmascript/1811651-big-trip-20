@@ -40,6 +40,16 @@ class AppModel extends Model {
     return adaptedPoints.filter(filterCallback).sort(sortCallback);
   }
 
+  /**
+   * @param {Point} point
+   */
+  addPoint(point) {
+    const adaptedPoint = AppModel.adaptPointForServer(point);
+
+    adaptedPoint.id = crypto.randomUUID();
+    this.#points.push(adaptedPoint);
+    console.log(adaptedPoint);
+  }
 
   /**
    * @param {Point} point
