@@ -13,3 +13,21 @@ class PlaceholderPresenter extends Presenter {
     present: 'There are no present events now',
     future: 'There are no future events now'
   };
+
+  /**
+   * @override
+   * @return {PlaceholderViewState}
+   */
+  createViewState() {
+    /**
+     * @type {UrlParams}
+     */
+    const urlParams = this.getUrlParams();
+    const points = this.model.getPoints(urlParams);
+    return {
+      text: this.textMap[urlParams.filter] ?? this.textMap.everything,
+      isHidden: points.length > 0
+    };
+  }
+}
+export default PlaceholderPresenter;
