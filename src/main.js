@@ -3,6 +3,7 @@ import './views/add-view.js';
 import './views/filter-view.js';
 import './views/sort-view.js';
 import './views/list-view.js';
+import './views/placeholder-view.js';
 
 import AppModel from './models/app-model.js';
 
