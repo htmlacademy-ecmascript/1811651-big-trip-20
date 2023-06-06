@@ -198,7 +198,7 @@ class ListPresenter extends Presenter {
     const point = editor.state;
 
     event.preventDefault();
-    this.model.updatePoint(this.serializePointViewState(point));
+    this.model.deletePoint(point.id);
     this.handleViewClose();
   }
 
