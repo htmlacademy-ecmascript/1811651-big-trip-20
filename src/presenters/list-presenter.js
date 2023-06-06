@@ -16,11 +16,26 @@ class ListPresenter extends Presenter {
     const urlParams = this.getUrlParams();
     const points = this.model.getPoints(urlParams);
     const items = points.map(this.createPointViewState, this);
+
+    if (urlParams.edit === 'draft') {
+      /**
+       * @type {Partial<Point>}
+       */
+      const draftPoint = {
+        type: 'taxi',
+        offerIds: [],
+        isFavorite: false
+      };
+
+      items.unshift(this.createPointViewState(draftPoint));
+    }
+
+    const [{isEditable, isDraft}] = items;
     return {items};
   }
 
   /**
-   * @param {Point} point
+   * @param {Partial<Point>} point
    * @return {PointViewState}
    */
   createPointViewState(point) {
@@ -45,6 +60,8 @@ class ListPresenter extends Presenter {
      * @type {UrlParams}
      */
     const urlParams = this.getUrlParams();
+    const isDraft = point.id === undefined;
+    const isEditable = isDraft || point.id === urlParams.edit;
 
     return {
       id: point.id,
@@ -59,7 +76,8 @@ class ListPresenter extends Presenter {
       basePrice: point.basePrice,
       offers,
       isFavorite: point.isFavorite,
-      isEditable: point.id === urlParams.edit
+      isEditable,
+      isDraft
     };
   }
 

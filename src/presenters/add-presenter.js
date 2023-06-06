@@ -9,8 +9,12 @@ class AddPresenter extends Presenter {
    * @return {AddViewState}
    */
   createViewState() {
+    /**
+     * @type {UrlParams}
+     */
+    const urlParams = this.getUrlParams();
     return {
-      isDisabled: false
+      isDisabled: urlParams.edit === 'draft'
     };
   }
 
