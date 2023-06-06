@@ -75,6 +75,18 @@ class EditorView extends View {
   }
 
   /**
+   * @param {Event} event
+   */
+  handleReset(event) {
+    const actByDefault = this.notify('delete');
+
+    if (!actByDefault) {
+      event.preventDefault();
+    }
+
+  }
+
+  /**
    * @override
    */
   createHtml() {
