@@ -121,6 +121,7 @@ class ListPresenter extends Presenter {
     const point = card.state;
 
     point.isFavorite = !point.isFavorite;
+    this.model.updatePoint(this.serializePointViewState(point));
     card.render();
   }
 
