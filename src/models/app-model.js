@@ -46,6 +46,9 @@ class AppModel extends Model {
    */
   updatePoint(point) {
     const adaptedPoint = AppModel.adaptPointForServer(point);
+    const index = this.#points.findIndex((it) => it.id === adaptedPoint.id);
+
+    this.#points.splice(index, 1, adaptedPoint);
   }
 
   /**
