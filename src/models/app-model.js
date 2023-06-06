@@ -8,6 +8,10 @@ class AppModel extends Model {
   #destinations = destinations;
   #offerGroups = offerGroups;
   /**
+   * @type {Record<FilterType, (it: Point) => boolean>}
+   */
+  #filterCallbackMap = {
+  /**
    * @type {Record<SortType, (a: Point, b: Point) => number>}
    */
   #sortCallbackMap = {
