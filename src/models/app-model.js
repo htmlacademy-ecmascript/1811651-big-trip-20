@@ -39,6 +39,12 @@ class AppModel extends Model {
 
     return adaptedPoints.filter(filterCallback).sort(sortCallback);
   }
+
+
+  /**
+   * @param {Point} point
+   */
+  updatePoint(point) {
   }
 
   /**
