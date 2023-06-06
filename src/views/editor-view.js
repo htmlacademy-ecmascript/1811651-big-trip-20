@@ -66,6 +66,14 @@ class EditorView extends View {
    * @param {SubmitEvent} event
    */
   handleSubmit(event) {
+    const actByDefault = this.notify('save');
+
+    if (!actByDefault) {
+      event.preventDefault();
+    }
+
+  }
+
   /**
    * @override
    */

@@ -165,6 +165,12 @@ class ListPresenter extends Presenter {
    */
   handleViewSave(event) {
     const editor = event.target;
+    const point = editor.state;
+
+    event.preventDefault();
+    this.model.updatePoint(this.serializePointViewState(point));
+    this.handleViewClose();
+  }
 }
 
 export default ListPresenter;
