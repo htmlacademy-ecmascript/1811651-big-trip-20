@@ -19,6 +19,7 @@ class EditorView extends View {
     this.addEventListener('click', this.handleClick);
     this.addEventListener('input', this.handleInput);
     this.addEventListener('submit', this.handleSubmit);
+    this.addEventListener('delete', this.handleReset);
   }
 
   connectedCallback() {
