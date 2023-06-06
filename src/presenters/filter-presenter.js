@@ -12,7 +12,7 @@ class FilterPresenter extends Presenter {
     /**
      * @type {Array<FilterType>}
      */
-    const types = ['everything', 'future', 'past', 'present'];
+    const types = ['everything', 'future','present', 'past'];
 
     const items = types.map((it) => ({
       value: it,
