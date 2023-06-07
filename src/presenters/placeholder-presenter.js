@@ -29,5 +29,16 @@ class PlaceholderPresenter extends Presenter {
       isHidden: points.length > 0
     };
   }
+
+  /**
+   * @override
+   */
+  addEventListeners() {
+    this.model.addEventListener('load', this.handleModelLoad.bind(this));
+  }
+
+  handleModelLoad() {
+
+  }
 }
 export default PlaceholderPresenter;

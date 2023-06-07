@@ -49,6 +49,10 @@ class AppModel extends Model {
     this.#apiService = apiService;
   }
 
+
+  /**
+   * @return {Promise<void>}
+   */
   async load() {
     const data = await Promise.all([
       this.#apiService.getPoints(),
@@ -60,6 +64,8 @@ class AppModel extends Model {
     this.#points = points;
     this.#destinations = destinations;
     this.#offerGroups = offerGroups;
+
+    this.notify('load');
   }
 
   /**
