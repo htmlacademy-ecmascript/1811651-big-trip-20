@@ -40,6 +40,10 @@ class AppModel extends Model {
     this.#apiService = apiService;
   }
 
+  async load() {
+
+  }
+
   /**
    * @param {{filter?: FilterType, sort?: SortType}} [criteria]
    * @return {Array<Point>}
