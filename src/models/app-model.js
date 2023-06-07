@@ -3,7 +3,9 @@ import points from '../data/points.json';
 import destinations from '../data/destinations.json';
 import offerGroups from '../data/offers.json';
 
+
 class AppModel extends Model {
+  #apiService;
   #points = points;
   #destinations = destinations;
   #offerGroups = offerGroups;
@@ -28,6 +30,16 @@ class AppModel extends Model {
     offers: () => 0
   };
 
+
+  /**
+   * @param {ApiService} apiService
+   */
+  constructor(apiService) {
+    super();
+
+    this.#apiService = apiService;
+  }
+
   /**
    * @param {{filter?: FilterType, sort?: SortType}} [criteria]
    * @return {Array<Point>}
@@ -48,7 +60,6 @@ class AppModel extends Model {
 
     adaptedPoint.id = crypto.randomUUID();
     this.#points.push(adaptedPoint);
-    console.log(adaptedPoint);
   }
 
   /**

@@ -5,6 +5,7 @@ import './views/sort-view.js';
 import './views/list-view.js';
 import './views/placeholder-view.js';
 
+import ApiService from './services/api-service.js';
 import AppModel from './models/app-model.js';
 
 import BriefPresenter from './presenters/brief-presenter.js';
@@ -15,7 +16,8 @@ import ListPresenter from './presenters/list-presenter.js';
 import PlaceholderPresenter from './presenters/placeholder-presenter.js';
 
 
-const appModel = new AppModel();
+const apiService = new ApiService({authorization:'Basic asfasasa3242'});
+const appModel = new AppModel(apiService);
 
 new BriefPresenter(document.querySelector('brief-view'));
 new AddPresenter(document.querySelector('add-view'));
