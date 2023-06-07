@@ -5,6 +5,10 @@ import Presenter from './presenter.js';
  */
 class PlaceholderPresenter extends Presenter {
   /**
+   * @type {boolean}
+   */
+  isModelLoaded;
+  /**
    * @type {Record<FilterType, string>}
    */
   textMap = {
@@ -19,14 +23,20 @@ class PlaceholderPresenter extends Presenter {
    * @return {PlaceholderViewState}
    */
   createViewState() {
+    if (this.isModelLoaded) {
     /**
      * @type {UrlParams}
      */
-    const urlParams = this.getUrlParams();
-    const points = this.model.getPoints(urlParams);
+      const urlParams = this.getUrlParams();
+      const points = this.model.getPoints(urlParams);
+      return {
+        text: this.textMap[urlParams.filter] ?? this.textMap.everything,
+        isHidden: points.length > 0
+      };
+    }
+
     return {
-      text: this.textMap[urlParams.filter] ?? this.textMap.everything,
-      isHidden: points.length > 0
+      text: 'loading...'
     };
   }
 
@@ -38,7 +48,8 @@ class PlaceholderPresenter extends Presenter {
   }
 
   handleModelLoad() {
-
+    this.isModelLoaded = true;
+    this.updateView();
   }
 }
 export default PlaceholderPresenter;
