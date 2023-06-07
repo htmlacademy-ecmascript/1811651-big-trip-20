@@ -108,6 +108,10 @@
  */
 
 /**
+ * @typedef {import('./services/service.js').default} Service
+ */
+
+/**
  * @typedef Point
  * @prop {string} id
  * @prop {PointType} type
