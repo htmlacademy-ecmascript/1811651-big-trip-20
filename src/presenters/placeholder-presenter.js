@@ -8,6 +8,11 @@ class PlaceholderPresenter extends Presenter {
    * @type {boolean}
    */
   isModelLoaded;
+
+  /**
+   * @type {Error}
+   */
+  modelError;
   /**
    * @type {Record<FilterType, string>}
    */
@@ -35,6 +40,12 @@ class PlaceholderPresenter extends Presenter {
       };
     }
 
+    if (this.modelError) {
+      return {
+        text: String(this.modelError)
+      };
+    }
+
     return {
       text: 'loading...'
     };
@@ -45,10 +56,20 @@ class PlaceholderPresenter extends Presenter {
    */
   addEventListeners() {
     this.model.addEventListener('load', this.handleModelLoad.bind(this));
+    this.model.addEventListener('error', this.handleModelError.bind(this));
   }
 
   handleModelLoad() {
     this.isModelLoaded = true;
+    this.updateView();
+  }
+
+  /**
+   *
+   * @param {CustomEvent<Error>} event
+   */
+  handleModelError(event) {
+    this.modelError = event.detail;
     this.updateView();
   }
 }

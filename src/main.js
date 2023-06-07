@@ -21,7 +21,6 @@ const appModel = new AppModel(apiService);
 
 new PlaceholderPresenter(document.querySelector('placeholder-view'), appModel);
 
-console.log(appModel);
 
 appModel.load().then(() => {
   new BriefPresenter(document.querySelector('brief-view'));
