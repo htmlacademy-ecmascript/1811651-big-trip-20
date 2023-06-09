@@ -203,6 +203,8 @@ class ListPresenter extends Presenter {
     const point = editor.state;
 
     event.preventDefault();
+    point.isSaving = true;
+    editor.renderSubmitButton();
 
     if (point.isDraft) {
       await this.model.addPoint(this.serializePointViewState(point));
@@ -221,6 +223,9 @@ class ListPresenter extends Presenter {
     const point = editor.state;
 
     event.preventDefault();
+    point.isDeleting = true;
+    editor.renderResetButton();
+
     await this.model.deletePoint(point.id);
     this.handleViewClose();
   }
