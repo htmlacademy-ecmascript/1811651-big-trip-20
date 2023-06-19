@@ -15,6 +15,7 @@
  * @typedef {import('./views/card-view.js').default} CardView
  * @typedef {import('./views/editor-view.js').default} EditorView
  * @typedef {import('./views/placeholder-view.js').default} PlaceholderView
+ * @typedef {import('./views/overlay-view.js').default} OverlayView
  * @typedef {import('./views/view.js').default} View
  */
 
@@ -95,12 +96,16 @@
  */
 
 /**
+ * @typedef OverlayViewState
+ * @prop {boolean} isActive
+ */
+
+/**
  * @typedef UrlParams
  * @prop {string} [edit]
  * @prop {FilterType} [filter]
  * @prop {SortType} [sort]
  */
-
 
 /**
  * @typedef {import('./models/model.js').default} Model
