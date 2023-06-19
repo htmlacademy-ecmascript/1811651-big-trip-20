@@ -88,30 +88,97 @@ class AppModel extends Model {
   /**
    * @param {Point} point
    */
+<<<<<<< Updated upstream
+  async addPoint(point) {
+=======
+<<<<<<< Updated upstream
   addPoint(point) {
+>>>>>>> Stashed changes
     const adaptedPoint = AppModel.adaptPointForServer(point);
+    const addedPoint = await this.#apiService.addPoint(adaptedPoint);
 
+<<<<<<< Updated upstream
+    this.#points.push(addedPoint);
+=======
     adaptedPoint.id = crypto.randomUUID();
     this.#points.push(adaptedPoint);
+=======
+  async addPoint(point) {
+    try {
+      this.notify('busy');
+
+      const adaptedPoint = AppModel.adaptPointForServer(point);
+      const addedPoint = await this.#apiService.addPoint(adaptedPoint);
+
+      this.#points.push(addedPoint);
+
+    } finally {
+      this.notify('idle');
+    }
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   }
 
   /**
    * @param {Point} point
    */
+<<<<<<< Updated upstream
+  async updatePoint(point) {
+=======
+<<<<<<< Updated upstream
   updatePoint(point) {
+>>>>>>> Stashed changes
     const adaptedPoint = AppModel.adaptPointForServer(point);
+    const updatedPoint = await this.#apiService.updatePoint(adaptedPoint);
     const index = this.#points.findIndex((it) => it.id === adaptedPoint.id);
 
+<<<<<<< Updated upstream
+    this.#points.splice(index, 1, updatedPoint);
+=======
     this.#points.splice(index, 1, adaptedPoint);
+=======
+  async updatePoint(point) {
+    try {
+      this.notify('busy');
+
+      const adaptedPoint = AppModel.adaptPointForServer(point);
+      const updatedPoint = await this.#apiService.updatePoint(adaptedPoint);
+      const index = this.#points.findIndex((it) => it.id === adaptedPoint.id);
+
+      this.#points.splice(index, 1, updatedPoint);
+
+    } finally {
+      this.notify('idle');
+    }
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   }
 
   /**
    * @param {string} id
    */
+<<<<<<< Updated upstream
+  async deletePoint(id) {
+    await this.#apiService.deletePoint(id);
+=======
+<<<<<<< Updated upstream
   deletePoint(id) {
+>>>>>>> Stashed changes
     const index = this.#points.findIndex((it) => it.id === id);
+=======
+  async deletePoint(id) {
+    try {
+      this.notify('busy');
+>>>>>>> Stashed changes
 
-    this.#points.splice(index, 1);
+      await this.#apiService.deletePoint(id);
+      const index = this.#points.findIndex((it) => it.id === id);
+
+      this.#points.splice(index, 1);
+
+    } finally {
+      this.notify('idle');
+    }
   }
 
   /**
