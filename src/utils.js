@@ -1,22 +1,40 @@
+import {escape as escapeHtml} from 'he';
 import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration.js';
-import {escape as escapeHtml} from 'he';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.css';
 
 dayjs.extend(durationPlugin);
 
 /**
- *
- * @param {string} dateTime
+ * @param {string | dayjs.Dayjs} dateTime
+ * @param {boolean} [isNarrow]
  * @return {string}
  */
-function formatDate(dateTime) {
-  return dayjs(dateTime).format('MMM D');
+function formatDate(dateTime, isNarrow) {
+  return dayjs(dateTime).format(isNarrow ? 'D' : 'MMM D');
 }
 
 /**
- *
+ * @param {string} startDateTime
+ * @param {string} endDateTime
+ * @return {string}
+ */
+function formatDateRange(startDateTime, endDateTime) {
+  const start = dayjs(startDateTime);
+  const end = dayjs(endDateTime);
+
+  if (start.isSame(end, 'day')) {
+    return formatDate(start);
+  }
+
+  return [
+    formatDate(start),
+    formatDate(end, start.isSame(end, 'month'))
+  ].join(' — ');
+}
+
+/**
  * @param {string} dateTime
  * @return {string}
  */
@@ -30,8 +48,8 @@ function formatTime(dateTime) {
  * @return {string}
  */
 function formatDuration(startDateTime, endDateTime) {
-  const ms = dayjs(endDateTime).diff(startDateTime);
-  const duration = dayjs.duration(ms);
+  const milliseconds = dayjs(endDateTime).diff(startDateTime);
+  const duration = dayjs.duration(milliseconds);
 
   if (duration.days()) {
     return duration.format('DD[d] HH[h] mm[m]');
@@ -47,7 +65,7 @@ function formatDuration(startDateTime, endDateTime) {
 /**
  * @param {HTMLInputElement} startDateField
  * @param {HTMLInputElement} endDateField
- * @return{() => void}
+ * @return {() => void}
  */
 function createDatePickers(startDateField, endDateField) {
   /**
@@ -60,8 +78,9 @@ function createDatePickers(startDateField, endDateField) {
     altFormat: 'd/m/y H:i',
     locale: {firstDayOfWeek: 1},
     enableTime: true,
-    'time_24hr': true
+    'time_24hr': true,
   };
+
   const startDatePicker = flatpickr(startDateField, options);
   const endDatePicker = flatpickr(endDateField, options);
 
@@ -103,4 +122,4 @@ function html(strings, ...values) {
   return new SafeHtml(result);
 }
 
-export {formatDate, formatTime, formatDuration, createDatePickers, SafeHtml, html};
+export {formatDate, formatDateRange, formatTime, formatDuration, createDatePickers, SafeHtml, html};

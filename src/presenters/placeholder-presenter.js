@@ -36,7 +36,7 @@ class PlaceholderPresenter extends Presenter {
       const points = this.model.getPoints(urlParams);
       return {
         text: this.textMap[urlParams.filter] ?? this.textMap.everything,
-        isHidden: points.length > 0
+        isHidden: urlParams.edit === 'draft' || points.length > 0
       };
     }
 

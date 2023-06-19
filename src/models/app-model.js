@@ -25,20 +25,19 @@ class AppModel extends Model {
     everything: () => true,
     future: (it) => Date.parse(it.startDateTime) > Date.now(),
     present: (it) => !this.#filterCallbackMap.past(it) && !this.#filterCallbackMap.future(it),
-    past: (it) => Date.parse(it.endDateTime) < Date.now()
+    past: (it) => Date.parse(it.endDateTime) < Date.now(),
   };
 
   /**
    * @type {Record<SortType, (a: Point, b: Point) => number>}
    */
   #sortCallbackMap = {
-    day: (a, b) => Date.parse(a.startDateTime) - Date.parse(b.endDateTime),
+    day: (a, b) => Date.parse(a.startDateTime) - Date.parse(b.startDateTime),
     event: () => 0,
     time: (a, b) => AppModel.calcPointDuration(b) - AppModel.calcPointDuration(a),
     price: (a, b) => b.basePrice - a.basePrice,
-    offers: () => 0
+    offers: () => 0,
   };
-
 
   /**
    * @param {ApiService} apiService
@@ -49,7 +48,6 @@ class AppModel extends Model {
     this.#apiService = apiService;
   }
 
-
   /**
    * @return {Promise<void>}
    */
@@ -58,16 +56,16 @@ class AppModel extends Model {
       const data = await Promise.all([
         this.#apiService.getPoints(),
         this.#apiService.getDestinations(),
-        this.#apiService.getOfferGroups()
+        this.#apiService.getOfferGroups(),
       ]);
-
       const [points, destinations, offerGroups] = data;
+
       this.#points = points;
       this.#destinations = destinations;
       this.#offerGroups = offerGroups;
-
       this.notify('load');
-    } catch(error) {
+
+    } catch (error) {
       this.notify('error', error);
       throw error;
     }
@@ -88,21 +86,6 @@ class AppModel extends Model {
   /**
    * @param {Point} point
    */
-<<<<<<< Updated upstream
-  async addPoint(point) {
-=======
-<<<<<<< Updated upstream
-  addPoint(point) {
->>>>>>> Stashed changes
-    const adaptedPoint = AppModel.adaptPointForServer(point);
-    const addedPoint = await this.#apiService.addPoint(adaptedPoint);
-
-<<<<<<< Updated upstream
-    this.#points.push(addedPoint);
-=======
-    adaptedPoint.id = crypto.randomUUID();
-    this.#points.push(adaptedPoint);
-=======
   async addPoint(point) {
     try {
       this.notify('busy');
@@ -111,32 +94,16 @@ class AppModel extends Model {
       const addedPoint = await this.#apiService.addPoint(adaptedPoint);
 
       this.#points.push(addedPoint);
+      this.notify('change');
 
     } finally {
       this.notify('idle');
     }
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   }
 
   /**
    * @param {Point} point
    */
-<<<<<<< Updated upstream
-  async updatePoint(point) {
-=======
-<<<<<<< Updated upstream
-  updatePoint(point) {
->>>>>>> Stashed changes
-    const adaptedPoint = AppModel.adaptPointForServer(point);
-    const updatedPoint = await this.#apiService.updatePoint(adaptedPoint);
-    const index = this.#points.findIndex((it) => it.id === adaptedPoint.id);
-
-<<<<<<< Updated upstream
-    this.#points.splice(index, 1, updatedPoint);
-=======
-    this.#points.splice(index, 1, adaptedPoint);
-=======
   async updatePoint(point) {
     try {
       this.notify('busy');
@@ -146,35 +113,25 @@ class AppModel extends Model {
       const index = this.#points.findIndex((it) => it.id === adaptedPoint.id);
 
       this.#points.splice(index, 1, updatedPoint);
+      this.notify('change');
 
     } finally {
       this.notify('idle');
     }
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   }
 
   /**
    * @param {string} id
    */
-<<<<<<< Updated upstream
-  async deletePoint(id) {
-    await this.#apiService.deletePoint(id);
-=======
-<<<<<<< Updated upstream
-  deletePoint(id) {
->>>>>>> Stashed changes
-    const index = this.#points.findIndex((it) => it.id === id);
-=======
   async deletePoint(id) {
     try {
       this.notify('busy');
->>>>>>> Stashed changes
 
       await this.#apiService.deletePoint(id);
       const index = this.#points.findIndex((it) => it.id === id);
 
       this.#points.splice(index, 1);
+      this.notify('change');
 
     } finally {
       this.notify('idle');
@@ -207,7 +164,6 @@ class AppModel extends Model {
    * @param {PointInSnakeCase} point
    * @return {Point}
    */
-
   static adaptPointForClient(point) {
     return {
       id: point.id,
@@ -217,7 +173,7 @@ class AppModel extends Model {
       endDateTime: point.date_to,
       basePrice: point.base_price,
       offerIds: point.offers,
-      isFavorite: point.is_favorite
+      isFavorite: point.is_favorite,
     };
   }
 
@@ -234,10 +190,9 @@ class AppModel extends Model {
       'date_to': point.endDateTime,
       'base_price': point.basePrice,
       'offers': point.offerIds,
-      'is_favorite': point.isFavorite
+      'is_favorite': point.isFavorite,
     };
   }
-
 }
 
 export default AppModel;
