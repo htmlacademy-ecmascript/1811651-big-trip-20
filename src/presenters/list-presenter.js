@@ -139,9 +139,20 @@ class ListPresenter extends Presenter {
     const card = event.target;
     const point = card.state;
 
+<<<<<<< Updated upstream
     point.isFavorite = !point.isFavorite;
     await this.model.updatePoint(this.serializePointViewState(point));
     card.render();
+=======
+    try {
+      point.isFavorite = !point.isFavorite;
+      await this.model.updatePoint(this.serializePointViewState(point));
+      card.render();
+
+    } catch {
+      card.shake();
+    }
+>>>>>>> Stashed changes
   }
 
   /**
@@ -202,6 +213,7 @@ class ListPresenter extends Presenter {
     const editor = event.target;
     const point = editor.state;
 
+<<<<<<< Updated upstream
     event.preventDefault();
     point.isSaving = true;
     editor.renderSubmitButton();
@@ -209,10 +221,32 @@ class ListPresenter extends Presenter {
     if (point.isDraft) {
       await this.model.addPoint(this.serializePointViewState(point));
     } else {
+<<<<<<< Updated upstream
       await this.model.updatePoint(this.serializePointViewState(point));
     }
+=======
+      this.model.updatePoint(this.serializePointViewState(point));
+=======
+    try {
+      event.preventDefault();
+      point.isSaving = true;
+      editor.renderSubmitButton();
+>>>>>>> Stashed changes
 
-    this.handleViewClose();
+      if (point.isDraft) {
+        await this.model.addPoint(this.serializePointViewState(point));
+      } else {
+        await this.model.updatePoint(this.serializePointViewState(point));
+      }
+
+      this.handleViewClose();
+
+    } catch {
+      point.isSaving = false;
+      editor.renderSubmitButton();
+      editor.shake();
+>>>>>>> Stashed changes
+    }
   }
 
   /**
@@ -222,12 +256,28 @@ class ListPresenter extends Presenter {
     const editor = event.target;
     const point = editor.state;
 
+<<<<<<< Updated upstream
     event.preventDefault();
     point.isDeleting = true;
     editor.renderResetButton();
 
     await this.model.deletePoint(point.id);
     this.handleViewClose();
+=======
+    try {
+      event.preventDefault();
+      point.isDeleting = true;
+      editor.renderResetButton();
+
+      await this.model.deletePoint(point.id);
+      this.handleViewClose();
+
+    } catch {
+      point.isDeleting = false;
+      editor.renderResetButton();
+      editor.shake();
+    }
+>>>>>>> Stashed changes
   }
 
 }
