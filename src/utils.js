@@ -1,4 +1,5 @@
 import {escape as escapeHtml} from 'he';
+import SafeHtml from './safe-html.js';
 import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration.js';
 import flatpickr from 'flatpickr';
@@ -93,7 +94,6 @@ function createDatePickers(startDateField, endDateField) {
   };
 }
 
-class SafeHtml extends String {}
 
 /**
  * @param {TemplateStringsArray} strings
@@ -122,4 +122,4 @@ function html(strings, ...values) {
   return new SafeHtml(result);
 }
 
-export {formatDate, formatDateRange, formatTime, formatDuration, createDatePickers, SafeHtml, html};
+export {formatDate, formatDateRange, formatTime, formatDuration, createDatePickers, html};
